@@ -142,4 +142,41 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // ---- Copy email to clipboard & show toast ----
+  const emailLink = document.getElementById("emailCopy");
+  const copyToastEl = document.getElementById("copyToast");
+  let copyToastInstance = null;
+  if (copyToastEl && window.bootstrap) {
+    copyToastInstance = new bootstrap.Toast(copyToastEl);
+  }
+
+  // ---- Copy email to clipboard & show toast (attach to all mailto links) ----
+  const mailtoLinks = Array.from(
+    document.querySelectorAll('a[href^="mailto:"], a[data-email]'),
+  );
+  mailtoLinks.forEach(attachEmailCopy);
+
+  function attachEmailCopy(el) {
+    el.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const href = el.dataset.email || el.getAttribute("href") || "";
+      const m = href.match(/mailto:(.*)/);
+      const toCopy = m ? m[1] : href;
+      try {
+        await navigator.clipboard.writeText(toCopy);
+        if (copyToastEl) {
+          const body = copyToastEl.querySelector(".toast-body");
+          if (body)
+            body.textContent = `E-mail copiado para a área de transferência`;
+          copyToastInstance?.show();
+        } else {
+          alert("E-mail copiado para a área de transferência");
+        }
+      } catch (err) {
+        console.error("Clipboard error", err);
+        alert("Não foi possível copiar o e-mail");
+      }
+    });
+  }
 });
