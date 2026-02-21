@@ -179,4 +179,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // ---- Atualiza o ano no rodapé automaticamente ----
+  // Este bloco define o conteúdo do elemento com id `currentYear` para o
+  // ano atual. Mantemos isso em `js/scripts.js` para evitar esquecer de
+  // atualizar o ano manualmente no HTML.
+  (function setFooterYear() {
+    const yearEl = document.getElementById("currentYear");
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
+  })();
 });
