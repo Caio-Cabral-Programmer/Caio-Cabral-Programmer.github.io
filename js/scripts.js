@@ -190,4 +190,70 @@ document.addEventListener("DOMContentLoaded", () => {
       yearEl.textContent = new Date().getFullYear();
     }
   })();
+
+  // ---- Timeline date formatter (like LinkedIn) ----
+  function formatMonthYear(date) {
+    return date.toLocaleString("en-US", { month: "short", year: "numeric" });
+  }
+
+  function parseLocalDate(dateRaw) {
+    if (!dateRaw) return null;
+    const parts = dateRaw.split("-");
+    if (parts.length >= 3) {
+      const y = Number(parts[0]);
+      const m = Number(parts[1]) - 1;
+      const d = Number(parts[2]);
+      const parsed = new Date(y, m, d);
+      if (!isNaN(parsed.getTime())) return parsed;
+    }
+    const fallback = new Date(dateRaw);
+    if (!isNaN(fallback.getTime())) return fallback;
+    return null;
+  }
+
+  function computeDuration(start, end) {
+    let startYear = start.getFullYear();
+    let startMonth = start.getMonth();
+    let endYear = end.getFullYear();
+    let endMonth = end.getMonth();
+
+    // base difference in months (endMonth and startMonth are 0-based)
+    let totalMonths = (endYear - startYear) * 12 + (endMonth - startMonth);
+    // If the end day is on/after the start day, count the current month as in-progress
+    // This makes the calculation inclusive (e.g., Jun 1 -> Feb 21 counts as 9 months)
+    if (end.getDate() >= start.getDate()) totalMonths += 1;
+    if (totalMonths < 0) totalMonths = 0;
+
+    const years = Math.floor(totalMonths / 12);
+    const months = totalMonths % 12;
+    const parts = [];
+    if (years > 0) parts.push(`${years} ${years === 1 ? "year" : "years"}`);
+    if (months > 0)
+      parts.push(`${months} ${months === 1 ? "month" : "months"}`);
+    return parts.join(" ") || "0 months";
+  }
+
+  function updateTimelineDates() {
+    const items = document.querySelectorAll(".timeline-item[data-start]");
+    items.forEach((item) => {
+      const startRaw = item.getAttribute("data-start");
+      if (!startRaw) return;
+      const start = parseLocalDate(startRaw);
+      if (!start) return;
+
+      const endRaw = item.getAttribute("data-end");
+      const end = parseLocalDate(endRaw) || new Date();
+
+      const formattedStart = formatMonthYear(start);
+      const formattedEnd = endRaw ? formatMonthYear(end) : "Present";
+      const duration = computeDuration(start, end);
+      const dateEl = item.querySelector(".timeline-date");
+      if (dateEl) {
+        dateEl.innerHTML = `<i class="far fa-calendar-alt me-1"></i>${formattedStart} — ${formattedEnd} · ${duration}`;
+      }
+    });
+  }
+
+  // Run once on load to update items with data-start
+  updateTimelineDates();
 });
