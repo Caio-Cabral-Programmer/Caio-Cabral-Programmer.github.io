@@ -254,6 +254,44 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ---- Theme Switcher ----
+  /**
+   * Applies the selected color theme to the page and persists the
+   * choice in localStorage. Updates the active state of theme buttons.
+   * @param {string} themeName - Theme identifier ("default", "teal", "orange", "green").
+   */
+  const THEME_STORAGE_KEY = "portfolio-theme";
+  const themeButtons = document.querySelectorAll(".theme-btn[data-theme]");
+
+  function applyTheme(themeName) {
+    const htmlEl = document.documentElement;
+
+    if (themeName === "default") {
+      htmlEl.removeAttribute("data-theme");
+    } else {
+      htmlEl.setAttribute("data-theme", themeName);
+    }
+
+    // Update active state on buttons
+    themeButtons.forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.theme === themeName);
+    });
+
+    // Persist choice
+    localStorage.setItem(THEME_STORAGE_KEY, themeName);
+  }
+
+  // Restore saved theme on load
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || "default";
+  applyTheme(savedTheme);
+
+  // Attach click handlers to theme buttons
+  themeButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      applyTheme(btn.dataset.theme);
+    });
+  });
+
   // Run once on load to update items with data-start
   updateTimelineDates();
 });

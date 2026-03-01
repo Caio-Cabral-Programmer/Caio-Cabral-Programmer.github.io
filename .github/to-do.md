@@ -1,28 +1,26 @@
 # 📝 Project Roadmap & TO-DO
 
+## TO-DO - Little steps to make a big impact!
+
+- [ ] Understanding the copilot-instructions.md file that was created.
+- [ ] Understanding the improvement-suggestions.md file that was created.
+
 ## 🚀 Upcoming Features
 
-- [ ] Feature Name
+- [ ] Feature: Certifications Section
   - [ ] Subtask 1
-  - [ ] Subtask 2
-- [ ] Another Feature
 
 ## 🐛 Bug Fixes
 
-- [ ] Critical: Description of bug
-- [ ] Low: Minor UI alignment issue
+- [ ] -
 
 ## 🎨 UI/UX Improvements
 
-- [ ] Update color palette
-- [ ] Improve mobile responsiveness for Portfolio section
-- [ ] Add animations to technology icons
+- [ ] -
 
 ## ⚙️ Refactoring & Technical Debt
 
-- [ ] Clean up `css/custom.css`
-- [ ] Optimize images in `assets/img/`
-- [ ] Update `js/scripts.js` for better performance
+- [ ] -
 
 ## ✅ Completed
 
@@ -34,6 +32,8 @@
 - [x] Feature: Experience Section
 - [x] Feature: Contact Section
 - [x] Feature: Footer
+- [x] Refactor: create copilot-instructions.md
+- [x] Refactor: create improvement-suggestions.md
 
 ---
 
