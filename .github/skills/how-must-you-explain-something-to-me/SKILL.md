@@ -1,5 +1,5 @@
 ---
-name: how-can-you-explain-something-to-me
+name: how-must-you-explain-something-to-me
 description: Explain any requested topic in a super clear, didactic, beginner-friendly, and deep way, with practical examples, progressive difficulty, and verification prompts to ensure full understanding.
 ---
 
@@ -25,6 +25,8 @@ Activate this skill when requests include ideas like:
 - "explain in detail"
 - "I want to understand deeply"
 - "explain with examples"
+- "What is this or how does it work?"
+- "What is this selected code?"
 
 ## Core Teaching Principles
 
@@ -172,3 +174,4 @@ Topic: Event Delegation in JavaScript
 - Deep Dive: Reduces listener count, works well with dynamic DOM, but requires careful target matching.
 - Common Mistake: Using `event.target` without checking if it matches the expected selector.
 ````
+Always inform in the chat when this skill was used to perform a task.

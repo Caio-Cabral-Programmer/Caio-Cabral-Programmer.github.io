@@ -167,3 +167,5 @@ Before finishing, confirm:
 - Related files include file names and paths.
 - Explanation mode fields are present when requested.
 - No fabricated details were added.
+
+Always inform in the chat when this skill was used to perform a task.

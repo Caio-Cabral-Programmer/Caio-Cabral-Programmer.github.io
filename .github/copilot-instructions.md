@@ -214,8 +214,9 @@
 │   ├── img/                # Images (profile, project screenshots, etc.)
 │   └── video/              # Demo videos for project modals
 ├── .github/
-│   └── copilot-instructions.md   # This file
-├── improvement-suggestions.md    # Refactoring roadmap
+│   ├── copilot-instructions.md   # This file
+│   └── docs/
+│       └── improvement-suggestions.md    # Refactoring roadmap
 └── README.md
 ```
 
