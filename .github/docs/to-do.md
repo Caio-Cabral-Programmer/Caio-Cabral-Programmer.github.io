@@ -2,24 +2,27 @@
 
 ## TO-DO - Little steps to make a big impact!
 
-- [ ] Understanding the improvement-suggestions.md file that was created
+- [ ] Study the improvement-suggestions.md file that was created
+- [ ] Study the entire custom.css file to be able to make improvements and remove any redundant or unused code
+- [ ] Study the entire scripts.js file to be able to make improvements and remove any redundant or unused code
+- [ ] ⚙️ Refactoring & Technical Debt
 
 ## 🚀 Upcoming Features
 
-- [ ] Feature: Certifications Section
-  - [ ] Subtask 1
+- [ ] Feature: [empty]
+  - [ ] Subtask 1: [empty]
 
 ## 🐛 Bug Fixes
 
-- [ ] -
+- [ ] Fix: [empty]
 
 ## 🎨 UI/UX Improvements
 
-- [ ] -
+- [ ] Feature: [empty]
 
 ## ⚙️ Refactoring & Technical Debt
 
-- [ ] Implement improvement-suggestions.md
+- [ ] Refactor: Implement improvement-suggestions.md
 
 ## ✅ Completed
 
@@ -36,7 +39,9 @@
 - [x] Feature: four new buttons for color themes (blue, teal, orange, green) with CSS variables
 - [x] Feature: add two new skills (learning-log and how-can-you-explain-something-to-me) with detailed markdown templates for structured learning and explanations
 - [x] Understanding the copilot-instructions.md file that was created
+- [x] Feature: Certifications Section
+- [x] Feature: Projects Section
 
 ---
 
-_Last updated: 2026-02-28_
+_Last updated: 2026-03-07_

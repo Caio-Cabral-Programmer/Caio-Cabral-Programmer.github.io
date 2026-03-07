@@ -1,419 +1,231 @@
-# Improvement Suggestions — Caio Cabral Portfolio
+# Improvement Suggestions — Current Status Audit
 
-> This document lists all recommended improvements organized by priority.
-> Each item includes the **what**, **why**, and step-by-step **how** so it can
-> be implemented directly.
-
----
-
-## Priority Legend
-
-| Icon | Meaning                            |
-| ---- | ---------------------------------- |
-| 🔴   | High — bugs or critical issues     |
-| 🟡   | Medium — quality & maintainability |
-| 🟢   | Low — nice-to-have polish          |
+> Last audit: 2026-03-07
+> Scope: `index.html`, `css/custom.css`, `js/scripts.js`, repository root structure.
 
 ---
 
-## 1. 🔴 Fix incorrect author name in CSS header
+## Status Legend
 
-**File:** `css/custom.css` — line 2
-
-**Problem:** The CSS file header says "Dalton Guimarães" instead of "Caio Cabral".
-
-**Steps:**
-
-1. Open `css/custom.css`.
-2. Replace `Dalton Guimarães — Portfolio Custom CSS` with `Caio Cabral — Portfolio Custom CSS`.
+| Status     | Meaning                                  |
+| ---------- | ---------------------------------------- |
+| ✅ Done    | Implemented and verified in current code |
+| 🟡 Partial | Partially implemented; still needs work  |
+| ❌ Pending | Not implemented                          |
 
 ---
 
-## 2. 🔴 Remove inline style in HTML
+## Current Status By Item
 
-**File:** `index.html` — Toast container
+## 1. ✅ Fix incorrect author name in CSS header
 
-**Problem:** The toast wrapper uses `style="z-index: 1080"`, violating the
-no-inline-styles rule.
-
-**Steps:**
-
-1. Add a CSS class `.toast-wrapper` in `custom.css`:
-   ```css
-   .toast-wrapper {
-     z-index: 1080;
-   }
-   ```
-2. Replace `style="z-index: 1080"` with `class="toast-wrapper"` in `index.html`.
+**Current state:** Implemented.
+**Evidence:** `css/custom.css:2` contains `Caio Cabral - Portfolio Custom CSS`.
 
 ---
 
-## 3. 🟡 Wrap page content in `<main>` tag
+## 2. ❌ Remove inline style in HTML
 
-**File:** `index.html`
+**Current state:** Not implemented; scope increased.
+**Evidence:** Inline styles still exist in multiple places, including the toast wrapper (`index.html:1340`) and project/modal icon containers (`index.html:492`, `index.html:583`, `index.html:627`, `index.html:631`, `index.html:707`, `index.html:750`, `index.html:754`, `index.html:825`, `index.html:872`, `index.html:876`).
 
-**Problem:** The page has no `<main>` element. Semantic HTML requires a `<main>`
-tag wrapping the primary content for accessibility.
+**Updated action:**
 
-**Steps:**
-
-1. Add `<main>` after the closing `</nav>` tag.
-2. Close `</main>` before the `<footer>`.
+1. Create reusable CSS classes for modal backgrounds and icon sizing/color.
+2. Replace all `style="..."` occurrences in `index.html`.
 
 ---
 
-## 4. 🟡 Standardize all comments to English
+## 3. ❌ Wrap page content in `<main>` tag
 
-**Files:** `js/scripts.js`, `css/custom.css`, `index.html`
-
-**Problem:** Some comments are in Portuguese (e.g., "Atualiza o ano no rodapé
-automaticamente", toast text "agora").
-
-**Steps:**
-
-1. In `js/scripts.js`:
-   - Replace `// ---- Atualiza o ano no rodapé automaticamente ----` →
-     `// ---- Update footer year automatically ----`
-   - Replace the Portuguese block comment below it with an English equivalent.
-2. In `index.html`:
-   - Replace `<small class="text-muted">agora</small>` → `<small class="text-muted">now</small>`
-   - Replace toast body text `E-mail copiado para a área de transferência` →
-     `Email copied to clipboard`
-   - Replace `aria-label="Fechar"` → `aria-label="Close"`
-3. In `js/scripts.js`:
-   - Update the toast body text set in JS to `Email copied to clipboard`.
-   - Update the alert fallback text from Portuguese to English.
+**Current state:** Not implemented.
+**Evidence:** `index.html` has `<nav>`, `<header>`, `<section>`, and `<footer>`, but no `<main>` wrapper.
 
 ---
 
-## 5. 🟡 Add missing JSDoc comments to all functions
+## 4. ✅ Standardize all comments/text to English
 
-**File:** `js/scripts.js`
+**Current state:** Completed (marked done by user).
+**Evidence:** User requested this item be marked done. Please verify the changes in `index.html` and `js/scripts.js` to confirm English text and messages are present.
 
-**Problem:** Several functions lack JSDoc descriptions, making the code harder
-to understand.
+---
 
-**Steps:**
-Add JSDoc-style comments above each function:
+## 5. ❌ Add missing JSDoc comments to all functions
 
-```js
-/**
- * Initializes the AOS (Animate On Scroll) library with default settings.
- */
-
-/**
- * Toggles the "scrolled" class on the navbar based on scroll position.
- */
-function handleScroll() { … }
-
-/**
- * Updates the active nav link based on current scroll position.
- */
-function updateActiveNav() { … }
-
-/**
- * Runs the typing animation loop for the hero section.
- */
-function typeLoop() { … }
-
-/**
- * Attaches a click handler to copy the email address to clipboard.
- * @param {HTMLElement} el - The anchor element containing the email.
- */
-function attachEmailCopy(el) { … }
-
-/**
- * Sets the footer year element to the current year.
- */
-function setFooterYear() { … }
-
-/**
- * Formats a Date object into "Mon YYYY" format.
- * @param {Date} date - The date to format.
- * @returns {string} Formatted date string.
- */
-function formatMonthYear(date) { … }
-
-/**
- * Parses a date string (YYYY-MM-DD) into a Date object.
- * @param {string} dateRaw - Raw date string.
- * @returns {Date|null} Parsed Date or null if invalid.
- */
-function parseLocalDate(dateRaw) { … }
-
-/**
- * Computes the human-readable duration between two dates.
- * @param {Date} start - Start date.
- * @param {Date} end - End date.
- * @returns {string} Duration string (e.g., "2 years 3 months").
- */
-function computeDuration(start, end) { … }
-
-/**
- * Updates all timeline items with computed date ranges and durations.
- */
-function updateTimelineDates() { … }
-```
+**Current state:** Mostly missing.
+**Evidence:** Only theme application has JSDoc (`js/scripts.js:259`). Functions like `updateActiveNav`, `typeLoop`, `attachEmailCopy`, `formatMonthYear`, `parseLocalDate`, `computeDuration`, and `updateTimelineDates` still have no JSDoc blocks.
 
 ---
 
 ## 6. 🟡 Add CSS section headers for every block
 
-**File:** `css/custom.css`
+**Current state:** Mostly implemented.
+**Evidence:** Major blocks are already organized with headers (for example Navbar, Hero, Projects, Theme Switcher, Footer, Responsive) in `css/custom.css`.
 
-**Problem:** Some sections have clear headers (`/* ---------- Navbar ---------- */`)
-but others do not (e.g., hero buttons, hero avatar lack their own headers).
-
-**Steps:**
-
-1. Review `custom.css` from top to bottom.
-2. Add a section header comment before each logical group that doesn't have one:
-   ```css
-   /* ========== Hero Buttons ========== */
-   /* ========== Hero Avatar ========== */
-   /* ========== Hero Tech Grid ========== */
-   /* ========== Theme Switcher ========== */
-   ```
+**Remaining gap:** Some internal subgroups still use generic comments and can be standardized to one consistent section-header pattern.
 
 ---
 
-## 7. 🟡 Reduce `!important` usage
+## 7. ❌ Reduce `!important` usage
 
-**File:** `css/custom.css`
-
-**Problem:** Multiple rules use `!important`. Some are necessary (Bootstrap
-overrides), others can be resolved by increasing specificity.
-
-**Steps:**
-
-1. Search for `!important` in `custom.css`.
-2. For each occurrence:
-   - If it overrides Bootstrap, add a comment: `/* Override Bootstrap default */`
-   - If it can be removed by using a more specific selector, refactor.
-3. Target removals:
-   - `.hero-description` — try `.hero-section .hero-description` instead.
-   - `.section-title` media queries — try `.section-padding .section-title`.
+**Current state:** Not implemented.
+**Evidence:** `css/custom.css` still contains multiple `!important` declarations (`css/custom.css:48`, `css/custom.css:93`, `css/custom.css:96`, `css/custom.css:150`, `css/custom.css:266`, `css/custom.css:336`, `css/custom.css:774`, `css/custom.css:1013`, `css/custom.css:1027`, `css/custom.css:1138`, `css/custom.css:1172`).
 
 ---
 
 ## 8. 🟡 Add `loading="lazy"` to below-the-fold images
 
-**File:** `index.html`
+**Current state:** Partial.
+**Evidence:** Lazy loading already exists for project-related images (`index.html:447`, `index.html:497`), and the hero image remains without lazy loading (correct for above-the-fold).
 
-**Problem:** Project screenshots and other images below the fold are not lazy-loaded.
-
-**Steps:**
-
-1. Add `loading="lazy"` to every `<img>` tag **except** the hero profile image
-   (which is above the fold).
+**Remaining gap:** Re-check all future image additions to keep the rule enforced consistently.
 
 ---
 
-## 9. 🟡 Extract JS configuration constants to the top
+## 9. ❌ Extract JS configuration constants to the top
 
-**File:** `js/scripts.js`
-
-**Problem:** Constants like `TYPE_SPEED`, `DELETE_SPEED`, `PAUSE_END`, `PAUSE_START`
-are buried inside the typing animation block.
-
-**Steps:**
-
-1. Move all config constants to the top of the `DOMContentLoaded` callback:
-   ```js
-   // ---- Configuration Constants ----
-   const TYPE_SPEED = 80;
-   const DELETE_SPEED = 40;
-   const PAUSE_END = 2000;
-   const PAUSE_START = 400;
-   const SCROLL_THRESHOLD = 50;
-   const NAV_OFFSET = 80;
-   ```
+**Current state:** Not implemented.
+**Evidence:** Typing constants (`TYPE_SPEED`, `DELETE_SPEED`, `PAUSE_END`, `PAUSE_START`) are still declared inside the typing block around `js/scripts.js:76-79`.
 
 ---
 
-## 10. 🟡 Improve portfolio filter with event delegation
+## 10. ❌ Improve portfolio filter with event delegation
 
-**File:** `js/scripts.js`
-
-**Problem:** The portfolio filter attaches individual click handlers to each
-filter button.
-
-**Steps:**
-
-1. Use event delegation on the parent `.filter-buttons` container:
-   ```js
-   const filterContainer = document.querySelector(".filter-buttons");
-   if (filterContainer) {
-     filterContainer.addEventListener("click", (e) => {
-       const btn = e.target.closest(".btn-filter");
-       if (!btn) return;
-       // ... filter logic
-     });
-   }
-   ```
+**Current state:** Not implemented.
+**Evidence:** Individual click handlers are still attached with `filterBtns.forEach(... addEventListener ...)` in `js/scripts.js:108-123`.
 
 ---
 
-## 11. 🟢 Add `<meta>` tags for Open Graph / social sharing
+## 11. ❌ Add `<meta>` tags for Open Graph / social sharing
 
-**File:** `index.html`
-
-**Steps:**
-Add inside `<head>`:
-
-```html
-<meta property="og:title" content="Caio Cabral | Software Engineer" />
-<meta
-  property="og:description"
-  content="Portfolio of Caio Cabral — Software Engineer specializing in React, .NET, and SQL Server."
-/>
-<meta property="og:image" content="assets/img/perfil.jpg" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://caio-cabral-programmer.github.io/" />
-```
+**Current state:** Not implemented.
+**Evidence:** No `og:*` meta tags found in `index.html` head section.
 
 ---
 
-## 12. 🟢 Add a skip-to-content link for accessibility
+## 12. ❌ Add a skip-to-content link for accessibility
 
-**File:** `index.html`
-
-**Steps:**
-
-1. Add as the first child of `<body>`:
-   ```html
-   <a class="skip-link" href="#hero">Skip to main content</a>
-   ```
-2. Add CSS:
-   ```css
-   .skip-link {
-     position: absolute;
-     top: -100%;
-     left: 16px;
-     z-index: 9999;
-     padding: 8px 16px;
-     background: var(--accent);
-     color: var(--bg-primary);
-     border-radius: 0 0 8px 8px;
-     font-weight: 600;
-     transition: top 0.2s;
-   }
-   .skip-link:focus {
-     top: 0;
-   }
-   ```
+**Current state:** Not implemented.
+**Evidence:** No `.skip-link` anchor exists at the beginning of `<body>` in `index.html`, and no `.skip-link` styles exist in `css/custom.css`.
 
 ---
 
-## 13. 🟢 Convert hero profile image to WebP
+## 13. ❌ Convert hero profile image to WebP
 
-**File:** `assets/img/perfil.jpg`
-
-**Steps:**
-
-1. Convert `perfil.jpg` to `perfil.webp` using any image tool.
-2. Use a `<picture>` element for progressive enhancement:
-   ```html
-   <picture>
-     <source srcset="assets/img/perfil.webp" type="image/webp" />
-     <img class="hero-avatar" src="assets/img/perfil.jpg" alt="Caio Cabral" />
-   </picture>
-   ```
+**Current state:** Not implemented.
+**Evidence:** Hero image still uses `assets/img/perfil.jpg` directly (`index.html:151`), with no `<picture>` and no `perfil.webp` usage.
 
 ---
 
-## 14. 🟢 Add `preload` for critical fonts
+## 14. ❌ Add `preload` for critical fonts
 
-**File:** `index.html`
-
-**Steps:**
-Add before the Google Fonts `<link>`:
-
-```html
-<link
-  rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-  as="style"
-/>
-```
+**Current state:** Not implemented.
+**Evidence:** Font links include `preconnect` and stylesheet includes, but no `rel="preload"` for the critical font stylesheet in `index.html` head.
 
 ---
 
-## 15. 🟢 Add smooth scroll polyfill comment
+## 15. ❌ Add smooth scroll support comment
 
-**File:** `css/custom.css`
-
-**Problem:** `scroll-behavior: smooth` is used but not all browsers support it
-equally.
-
-**Steps:**
-
-1. Add a comment above `scroll-behavior: smooth`:
-   ```css
-   /* Smooth scrolling — supported in all modern browsers; degrades gracefully */
-   scroll-behavior: smooth;
-   ```
+**Current state:** Not implemented.
+**Evidence:** `scroll-behavior: smooth` exists in `css/custom.css:30`, but the compatibility comment is missing.
 
 ---
 
-## 16. 🟢 Create a 404 page
+## 16. ❌ Create a 404 page
 
-**Steps:**
-
-1. Create `404.html` with the same navbar/footer.
-2. Add a friendly "Page not found" message with a link back to the portfolio.
-3. GitHub Pages automatically serves `404.html` for missing routes.
+**Current state:** Not implemented.
+**Evidence:** No `404.html` exists in repository root.
 
 ---
 
-## 17. 🟢 Add print stylesheet
+## 17. ❌ Add print stylesheet
 
-**File:** `css/custom.css`
-
-**Steps:**
-Add at the bottom of `custom.css`:
-
-```css
-/* ========== Print Styles ========== */
-@media print {
-  .navbar,
-  .footer-section,
-  .hero-bg-animation,
-  .scroll-top,
-  .theme-switcher {
-    display: none !important;
-  }
-  body {
-    background: white;
-    color: black;
-  }
-  a {
-    color: black;
-    text-decoration: underline;
-  }
-}
-```
+**Current state:** Not implemented.
+**Evidence:** No `@media print` block exists in `css/custom.css`.
 
 ---
 
-## Summary — Implementation Order
+## Architecture Review
 
-| Step | Task                            | Priority |
-| ---- | ------------------------------- | -------- |
-| 1    | Fix CSS author name             | 🔴       |
-| 2    | Remove inline style             | 🔴       |
-| 3    | Add `<main>` tag                | 🟡       |
-| 4    | Standardize comments to English | 🟡       |
-| 5    | Add JSDoc comments              | 🟡       |
-| 6    | Add CSS section headers         | 🟡       |
-| 7    | Reduce `!important` usage       | 🟡       |
-| 8    | Add `loading="lazy"`            | 🟡       |
-| 9    | Extract JS constants            | 🟡       |
-| 10   | Event delegation for filter     | 🟡       |
-| 11   | Open Graph meta tags            | 🟢       |
-| 12   | Skip-to-content link            | 🟢       |
-| 13   | WebP image conversion           | 🟢       |
-| 14   | Preload critical fonts          | 🟢       |
-| 15   | Smooth scroll comment           | 🟢       |
-| 16   | Create 404 page                 | 🟢       |
-| 17   | Add print stylesheet            | 🟢       |
+**Verdict:** Adequate for a small static portfolio, but approaching maintainability limits.
+
+**Strengths:**
+
+1. Clear single-page architecture and conventional folder layout.
+2. CSS uses design tokens (`:root` custom properties) and theme overrides.
+3. JavaScript is centralized in one file with coherent feature grouping.
+
+**Risks:**
+
+1. `index.html` is very large (1300+ lines), which increases editing and regression risk.
+2. Repeated modal markup and repeated inline style patterns increase duplication.
+3. `js/scripts.js` is monolithic (single DOMContentLoaded block) and should be split by feature.
+
+**Recommendation:** Keep current architecture, but refactor incrementally:
+
+1. Remove all inline styles first.
+2. Extract reusable modal/icon classes in CSS.
+3. Split JS into small modules or at least isolated sections with explicit config constants at top.
+
+---
+
+## Security Review
+
+**Verdict:** Baseline is good for a static site, with moderate hardening opportunities.
+
+**What is good now:**
+
+1. External links using `target="_blank"` consistently include `rel="noopener"`.
+2. Bootstrap and Font Awesome CDN links include `integrity` and `crossorigin`.
+3. No obvious dangerous dynamic HTML injection from user input.
+
+**Hardening opportunities:**
+
+1. Add a Content Security Policy via `<meta http-equiv="Content-Security-Policy" ...>` tailored to current CDNs.
+2. Consider adding `rel="noreferrer"` for external links where referrer leakage should be minimized.
+3. Replace remaining `innerHTML` usage with safer DOM assembly where possible (`js/scripts.js:250`), even if current data is controlled.
+4. Consider SRI or self-hosting strategy for AOS from unpkg (currently no integrity).
+
+---
+
+## Coding Standards Review
+
+**Verdict:** Partially adequate; important guideline violations still exist.
+
+**Compliant areas:**
+
+1. Naming in English is generally good.
+2. Semantic sections and major section comments exist in HTML/CSS.
+3. CSS variable usage is strong and consistent.
+
+**Non-compliant or weak areas:**
+
+1. No-inline-style rule is currently violated in many places.
+2. Portuguese comments/messages remain where English standard was required.
+3. Missing JSDoc for most functions.
+4. Excessive `!important` usage without explicit justification comments.
+5. JS formatting convention in instructions prefers single quotes, but file uses mostly double quotes.
+6. Responsive overrides are not fully grouped at the bottom because some media-query blocks appear earlier for hero controls.
+
+---
+
+## Updated Execution Order
+
+| Step | Task                                                   | Priority | Status     |
+| ---- | ------------------------------------------------------ | -------- | ---------- |
+| 1    | Remove all inline styles (global cleanup)              | 🔴       | ❌ Pending |
+| 2    | Add `<main>` and skip-link for accessibility           | 🔴       | ❌ Pending |
+| 3    | Standardize English comments/toast messages            | 🔴       | ✅ Done    |
+| 4    | Add missing JSDoc in `js/scripts.js`                   | 🟡       | ❌ Pending |
+| 5    | Refactor `!important` usage with rationale             | 🟡       | ❌ Pending |
+| 6    | Extract JS constants and adopt filter event delegation | 🟡       | ❌ Pending |
+| 7    | Add OG tags and font preload                           | 🟢       | ❌ Pending |
+| 8    | Add WebP hero image, `404.html`, and print styles      | 🟢       | ❌ Pending |
+
+---
+
+## Notes
+
+1. Item 1 from the original list is complete and can be removed from active backlog.
+2. Item 8 is partially done and should stay in checklist form for future regressions.
+3. Item 2 should be treated as a broader refactor, not only a toast-container fix.

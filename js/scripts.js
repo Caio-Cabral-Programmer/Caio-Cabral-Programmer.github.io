@@ -105,9 +105,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   typeLoop();
 
-  // ---- Portfolio Filter ----
+  // ---- Projects Filter ----
   const filterBtns = document.querySelectorAll(".btn-filter");
-  // Support legacy/new markup: `.portfolio-card` (original) and `.projects-card` (current)
+  // Support markup: ``.projects-card`
   const cards = document.querySelectorAll(".projects-card");
 
   filterBtns.forEach((btn) => {
@@ -169,22 +169,22 @@ document.addEventListener("DOMContentLoaded", () => {
         if (copyToastEl) {
           const body = copyToastEl.querySelector(".toast-body");
           if (body)
-            body.textContent = `E-mail copiado para a área de transferência`;
+            body.textContent = `Email "${toCopy}" copied to clipboard`;
           copyToastInstance?.show();
         } else {
-          alert("E-mail copiado para a área de transferência");
+          alert(`Email "${toCopy}" copied to clipboard`);
         }
       } catch (err) {
         console.error("Clipboard error", err);
-        alert("Não foi possível copiar o e-mail");
+        alert(`Failed to copy email "${toCopy}"`);
       }
     });
   }
 
-  // ---- Atualiza o ano no rodapé automaticamente ----
-  // Este bloco define o conteúdo do elemento com id `currentYear` para o
-  // ano atual. Mantemos isso em `js/scripts.js` para evitar esquecer de
-  // atualizar o ano manualmente no HTML.
+  // ---- Update footer year automatically ----
+  // This block sets the content of the element with id `currentYear` to the
+  // current year. We keep this in `js/scripts.js` to avoid forgetting to
+  // manually update the year in the HTML.
   (function setFooterYear() {
     const yearEl = document.getElementById("currentYear");
     if (yearEl) {
