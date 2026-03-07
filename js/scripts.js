@@ -107,7 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---- Portfolio Filter ----
   const filterBtns = document.querySelectorAll(".btn-filter");
-  const cards = document.querySelectorAll(".portfolio-card");
+  // Support legacy/new markup: `.portfolio-card` (original) and `.projects-card` (current)
+  const cards = document.querySelectorAll(".projects-card");
 
   filterBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
