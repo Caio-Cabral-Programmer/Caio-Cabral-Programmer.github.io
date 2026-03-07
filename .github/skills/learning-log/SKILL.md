@@ -7,7 +7,7 @@ description: Create a conversation-based learning log that captures new learning
 
 ## Purpose
 
-Use this skill when the user asks to create a **learning log** from the current conversation, explanation, or implementation work.
+Use this skill when the user asks to create a **learning log** from the current conversation, explanation, or implementation work. Create that log in ".github\docs\learning-logs.md".
 
 This skill must produce a structured record of **new learnings** such as:
 
